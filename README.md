@@ -30,7 +30,8 @@ The integration tests test the implementation of the FishRepository. These tests
 app.php
 -------
 Rather than use a full blown presentation layer, this application has one presentation, and it is represented by the app.php file. This is the application that can be run using the command:
-    php app.php
+
+`php app.php`
 
 Running the tests
 -----------------
@@ -39,4 +40,5 @@ In order to run all the tests you will need mysql and phpunit installed. The tes
 If you plan on running the app before the tests, you will also need to create a table called "fish". If you run the tests first, the table will be created for you.
 
 To run the tests you will need to invoke the test runner with the bootstrap file and the configuration file:
-    phpunit --bootstrap Test/bootstrap.php --configuration Test/phpunit.xml Test/
+
+`phpunit --bootstrap Test/bootstrap.php --configuration Test/phpunit.xml Test/`
