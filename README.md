@@ -38,7 +38,9 @@ Running the tests
 You will need phpunit and the phpunit DB extension installed. This can be done with a couple easy pear commands:
 
 `pear config-set auto_discover 1`
+
 `pear install pear.phpunit.de/PHPUnit`
+
 `pear install phpunit/DbUnit`
 
 In order to run all the tests you will need mysql and phpunit installed. The tests assume a database called "letsgofishing", but you can name it something else if you update the appropriate config files. 
