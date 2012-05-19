@@ -67,5 +67,5 @@ class FishRepository implements IFishRepository
             self::$pdo = new \PDO(getenv("DB_DSN"), getenv('DB_USER'), getenv('DB_PASSWD'));
         }
         return self::$pdo;
-	}
+    }
 }
