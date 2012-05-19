@@ -6,6 +6,8 @@ use Domain\Entity\Fish;
 */
 abstract class FishingTestCase extends \PHPUnit_Framework_TestCase
 {
+    protected $repo;
+
     protected function getFishWithId($id)
     {
         $fish = new Fish();
@@ -14,5 +16,12 @@ abstract class FishingTestCase extends \PHPUnit_Framework_TestCase
         $idProp->setAccessible(true);
         $idProp->setValue($fish,$id);
         return $fish;
+    }
+
+    protected function setUpRepoAll($matcher,$returnValue)
+    {
+        $this->repo->expects($matcher)
+            ->method('all')
+            ->will($this->returnValue($returnValue));
     }
 }

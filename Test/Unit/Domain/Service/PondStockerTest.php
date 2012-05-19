@@ -19,32 +19,66 @@ class PondStockerTest extends \PHPUnit_Framework_TestCase
 
     public function testConstructorTakesPond()
     {
-        $stocker = new PondStocker(new Pond($this->repoMock));
+        $stocker = $this->getPondStocker();
+
         $this->assertInstanceOf('Domain\Value\Pond',$stocker->getPond());
     }
 
     public function testStockNewFishWithEmptyRepoStocksPond()
     {
-        $this->repoMock->expects($this->once())
-                       ->method('all')
-                       ->will($this->returnValue(array()));
+        $this->repoAllWillReturn(array());
 
         $this->repoMock->expects($this->exactly(3))
                        ->method('store');
 
-        $stocker = new PondStocker(new Pond($this->repoMock));
+        $stocker = $this->getPondStocker();
+
         $stocker->stock(3);
+
         $this->assertEquals(3,$stocker->getPond()->getFishCount());
     }
 
     public function testStockNewFishWithExistingFishStocksPond()
     {
         $fixture = array(new Fish(),new Fish(), new Fish());
-        $this->repoMock->expects($this->once())
-                       ->method('all')
-                       ->will($this->returnValue($fixture));
-        $stocker = new PondStocker(new Pond($this->repoMock));
+
+        $this->repoAllWillReturn($fixture);
+
+        $stocker = $this->getPondStocker();
+
         $stocker->stock(3);
+
         $this->assertEquals(6,$stocker->getPond()->getFishCount());
+    }
+
+    public function testPondIsEmptyReturnsTrueWhenNone()
+    {
+        $stocker = $this->getPondStocker();
+
+        $this->assertTrue($stocker->pondIsEmpty());
+    }
+
+    public function testPondIsEmptyFalsWhenFishInPond()
+    {
+        $this->repoAllWillReturn(array());
+
+        $stocker = $this->getPondStocker();
+
+        $stocker->stock(3);
+
+        $this->assertFalse($stocker->pondIsEmpty());
+    }
+
+    private function repoAllWillReturn($returnValue)
+    {
+        $this->repoMock->expects($this->once())
+            ->method('all')
+            ->will($this->returnValue($returnValue));
+    }
+
+    private function getPondStocker()
+    {
+        $stocker = new PondStocker(new Pond($this->repoMock));
+        return $stocker;
     }
 }

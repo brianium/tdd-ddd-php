@@ -34,8 +34,8 @@ class Pond
 
     public function remove($fishId = 0)
     {
-        if(!$fishId)
-            $fishId = $this->getRandomFish()->getId();
+        if(!$fishId && $fish = $this->getRandomFish())
+            $fishId = $fish->getId();
 
         return $this->removeFish($fishId);
     }

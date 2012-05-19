@@ -7,7 +7,6 @@ use Domain\Value\Fisherman;
 */
 class FishermanTest extends FishingTestCase
 {
-    private $repo;
     private $pond;
     private $fishFixture;
 
@@ -45,9 +44,7 @@ class FishermanTest extends FishingTestCase
         $this->setUpCatch(1);
         $fisherman = new Fisherman($this->pond);
 
-        $this->repo->expects($this->once())
-             ->method('all')
-             ->will($this->returnValue($this->fishFixture));
+        $this->setUpRepoAll($this->once(),$this->fishFixture);
 
         $one = $fisherman->cast();
         $this->assertNull($one);
@@ -64,16 +61,10 @@ class FishermanTest extends FishingTestCase
         $this->setUpCatch(1);
         $fisherman = new Fisherman($this->pond);
 
-        $this->repo->expects($this->any())
-             ->method('all')
-             ->will($this->returnValue($this->fishFixture));
+        $this->setUpRepoAll($this->any(),$this->fishFixture);
 
         $this->assertEquals(3,$this->pond->getFishCount());
-        $i = 0;
-        while($i < 3) {
-            $fisherman->cast();
-            $i++;
-        }
+        $this->cast($fisherman,3);
 
         $this->assertEquals(2,$this->pond->getFishCount());
     }
@@ -83,9 +74,7 @@ class FishermanTest extends FishingTestCase
         $this->setUpCatch(1);
         $fisherman = new Fisherman($this->pond);
 
-        $this->repo->expects($this->any())
-             ->method('all')
-             ->will($this->returnValue($this->fishFixture));
+        $this->setUpRepoAll($this->any(),$this->fishFixture);
 
         $i = 1;
         while($i < 7) {
@@ -104,17 +93,22 @@ class FishermanTest extends FishingTestCase
         $this->setUpCatch(1);
         $fisherman = new Fisherman($this->pond);
 
-        $this->repo->expects($this->any())
-             ->method('all')
-             ->will($this->returnValue($this->fishFixture));
+        $this->setUpRepoAll($this->any(),$this->fishFixture);
 
         $this->assertEquals(0,count($fisherman->getFish()));
+
+        $this->cast($fisherman,3);
+
+        $this->assertEquals(1,count($fisherman->getFish()));
+    }
+
+    protected function cast($fisherman,$numCasts)
+    {
         $i = 0;
-        while ($i < 3) {
+        while ($i < $numCasts) {
             $fisherman->cast();
             $i++;
         }
-        $this->assertEquals(1,count($fisherman->getFish()));
     }
 
     protected function setUpCatch($id) {

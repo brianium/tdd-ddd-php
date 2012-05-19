@@ -30,6 +30,11 @@ class PondStocker
         }
     }
 
+    public function pondIsEmpty()
+    {
+        return $this->pond->getFishCount() == 0;
+    }
+
     private function stockExisting()
     {
         $uncaught = $this->pond->getRepo()->all();
