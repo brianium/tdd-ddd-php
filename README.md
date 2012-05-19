@@ -22,9 +22,9 @@ Test
 ----
 The test directory is broken up into two groups: unit tests and integration tests. 
 
-The unit tests were used to drive the design for everything in the Domain layer. These tests make heavy use of PHPUnit mock objects and assertions.
+The unit tests were used to drive the design for everything in the domain layer. These tests make heavy use of PHPUnit mock objects and assertions.
 
-The integration tests test the implementation of the FishRepository. These tests make use of the PHPUnit database extension to setup tables and actual rows to test against.
+The integration tests test the implementation of the fish repository. These tests make use of the PHPUnit database extension to setup tables and actual rows to test against.
 
 
 app.php
