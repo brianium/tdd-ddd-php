@@ -1,6 +1,7 @@
 <?php
 define('DS',DIRECTORY_SEPARATOR);
 require_once dirname(__FILE__) . DS . 'Infrastructure' . DS . 'Services' . DS . 'Autoloader.php';
+require_once 'environment.php';
 use \Infrastructure\Services\Autoloader;
 use \Domain\Value\Pond;
 use \Infrastructure\Persistence\FishRepository;
@@ -9,12 +10,6 @@ use \Domain\Value\Fisherman;
 
 //enable lazy loading
 Autoloader::register();
-
-//config environment
-putenv("DB_DSN=mysql:dbname=letsgofishing;host=127.0.0.1");
-putenv("DB_USER=root");
-putenv("DB_PASSWD=root");
-putenv("DB_DBNAME=letsgofishing");
 
 //lets stock our pond
 $stocker = new PondStocker(new Pond(new FishRepository()));
