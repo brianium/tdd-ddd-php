@@ -42,7 +42,7 @@ class PondTest extends FishingTestCase
         $this->assertEquals(1,$this->pond->getFishCount());
     }
 
-    public function testPondRemoveCallsFishRepoDeleteAndReturnsFish()
+    public function testPondDepleteCallsFishRepoDeleteAndReturnsFish()
     {
         $fish = $this->getFishWithId(1);
 
@@ -53,12 +53,12 @@ class PondTest extends FishingTestCase
 
         $this->pond->stock($fish);
 
-        $fish = $this->pond->remove(1);
+        $fish = $this->pond->deplete(1);
 
         $this->assertEquals(1,$fish->getId());
     }
 
-    public function testPondRemoveAltersCountToBeOneLess()
+    public function testPondDepleteAltersCountToBeOneLess()
     {
         $fish = $this->getFishWithId(1);
 
@@ -66,23 +66,23 @@ class PondTest extends FishingTestCase
 
         $this->assertEquals(1,$this->pond->getFishCount());
 
-        $this->pond->remove(1);
+        $this->pond->deplete(1);
 
         $this->assertEquals(0,$this->pond->getFishCount());
     }
 
-    public function testRemoveNonExistentFishDoesntCallDeleteAndReturnsNull()
+    public function testDepleteNonExistentFishDoesntCallDeleteAndReturnsNull()
     {
         $this->repo->expects($this->once())
              ->method('delete')
              ->with($this->equalTo(99))
              ->will($this->returnValue(null));
 
-        $fish = $this->pond->remove(99);
+        $fish = $this->pond->deplete(99);
         $this->assertNull($fish);
     }
 
-    public function testRemoveWithNoIdCallsRepoAllAndRandomlyRemovesFish()
+    public function testDepleteWithNoIdCallsRepoAllAndRandomlyRemovesFish()
     {
         $fish = array(
             $this->getFishWithId(1),
@@ -97,7 +97,7 @@ class PondTest extends FishingTestCase
              ->with($this->greaterThan(0))
              ->will($this->returnValue($fish[0]));
 
-        $removed = $this->pond->remove();
+        $removed = $this->pond->deplete();
         $this->assertInstanceOf('Domain\Entity\Fish',$removed);
     }
 }

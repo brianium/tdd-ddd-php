@@ -32,7 +32,7 @@ class Pond
         return $this->count;
     }
 
-    public function remove($fishId = 0)
+    public function deplete($fishId = 0)
     {
         if(!$fishId && $fish = $this->getRandomFish())
             $fishId = $fish->getId();
@@ -50,7 +50,7 @@ class Pond
         return $all[$randKey];
     }
 
-    protected function removeFish($fishId)
+    public function removeFish($fishId)
     {
         $fish = $this->repo->delete($fishId);
         $this->count--;

@@ -39,7 +39,7 @@ class FishermanTest extends FishingTestCase
         $this->assertEquals(1,$this->fisherman->getCastCount());
     }
 
-    public function testThirdCastCallsRepoDeleteViaPondRemoveAndReturnsFish()
+    public function testThirdCastCallsRepoDeleteViaPondDepleteAndReturnsFish()
     {
         $this->setUpCatch(1);
 
@@ -67,7 +67,7 @@ class FishermanTest extends FishingTestCase
         $this->assertEquals(2,$this->pond->getFishCount());
     }
 
-    public function testEveryThirdCastCallsRepoDeleteViaPondRemoveAndReturnsFish()
+    public function testEveryThirdCastCallsRepoDeleteViaPondDepleteAndReturnsFish()
     {
         $this->setUpCatch(1);
 

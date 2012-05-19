@@ -45,7 +45,7 @@ class Fisherman
 
     protected function catchFish()
     {
-        $fish = $this->pond->remove();
+        $fish = $this->pond->deplete();
         $this->fish[] = $fish;
         return $fish;
     }
