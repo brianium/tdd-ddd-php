@@ -8,16 +8,17 @@ use Domain\Repository\FishRepository;
 */
 class PondTest extends FishingTestCase
 {
+    private $pond;
+
     public function setUp()
     {
         $this->repo = $this->getMock('Domain\Repository\IFishRepository');
+        $this->pond = new Pond($this->repo);
     }
 
     public function testConstructWithFishRepository()
     {
-        $pond = $this->getPond();
-
-        $this->assertInstanceOf('Domain\Repository\IFishRepository',$pond->getRepo());
+        $this->assertInstanceOf('Domain\Repository\IFishRepository',$this->pond->getRepo());
     }
 
     public function testPondStockCallsFishRepoStoreWithNewFishEntity()
@@ -28,20 +29,17 @@ class PondTest extends FishingTestCase
              ->method('store')
              ->with($this->equalTo($fish));
 
-        $pond = $this->getPond();
 
-        $pond->stock($fish);
+        $this->pond->stock($fish);
     }
 
     public function testPondStockIncrementsCount()
     {
         $fish = new Fish();
 
-        $pond = $this->getPond();
+        $this->pond->stock($fish);
 
-        $pond->stock($fish);
-
-        $this->assertEquals(1,$pond->getFishCount());
+        $this->assertEquals(1,$this->pond->getFishCount());
     }
 
     public function testPondRemoveCallsFishRepoDeleteAndReturnsFish()
@@ -53,11 +51,9 @@ class PondTest extends FishingTestCase
              ->with($this->equalTo(1))
              ->will($this->returnValue($fish));
 
-        $pond = $this->getPond();
+        $this->pond->stock($fish);
 
-        $pond->stock($fish);
-
-        $fish = $pond->remove(1);
+        $fish = $this->pond->remove(1);
 
         $this->assertEquals(1,$fish->getId());
     }
@@ -66,15 +62,13 @@ class PondTest extends FishingTestCase
     {
         $fish = $this->getFishWithId(1);
 
-        $pond = $this->getPond();
+        $this->pond->stock($fish);
 
-        $pond->stock($fish);
+        $this->assertEquals(1,$this->pond->getFishCount());
 
-        $this->assertEquals(1,$pond->getFishCount());
+        $this->pond->remove(1);
 
-        $pond->remove(1);
-
-        $this->assertEquals(0,$pond->getFishCount());
+        $this->assertEquals(0,$this->pond->getFishCount());
     }
 
     public function testRemoveNonExistentFishDoesntCallDeleteAndReturnsNull()
@@ -84,8 +78,7 @@ class PondTest extends FishingTestCase
              ->with($this->equalTo(99))
              ->will($this->returnValue(null));
 
-        $pond = $this->getPond();
-        $fish = $pond->remove(99);
+        $fish = $this->pond->remove(99);
         $this->assertNull($fish);
     }
 
@@ -104,14 +97,7 @@ class PondTest extends FishingTestCase
              ->with($this->greaterThan(0))
              ->will($this->returnValue($fish[0]));
 
-        $pond = $this->getPond();
-        $removed = $pond->remove();
+        $removed = $this->pond->remove();
         $this->assertInstanceOf('Domain\Entity\Fish',$removed);
-    }
-
-    private function getPond()
-    {
-        $pond = new Pond($this->repo);
-        return $pond;
     }
 }

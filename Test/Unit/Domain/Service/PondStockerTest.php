@@ -15,13 +15,12 @@ class PondStockerTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->repoMock = $this->getMock('Domain\Repository\IFishRepository');
+        $this->stocker = new PondStocker(new Pond($this->repoMock));
     }
 
     public function testConstructorTakesPond()
     {
-        $stocker = $this->getPondStocker();
-
-        $this->assertInstanceOf('Domain\Value\Pond',$stocker->getPond());
+        $this->assertInstanceOf('Domain\Value\Pond',$this->stocker->getPond());
     }
 
     public function testStockNewFishWithEmptyRepoStocksPond()
@@ -31,11 +30,9 @@ class PondStockerTest extends \PHPUnit_Framework_TestCase
         $this->repoMock->expects($this->exactly(3))
                        ->method('store');
 
-        $stocker = $this->getPondStocker();
+        $this->stocker->stock(3);
 
-        $stocker->stock(3);
-
-        $this->assertEquals(3,$stocker->getPond()->getFishCount());
+        $this->assertEquals(3,$this->stocker->getPond()->getFishCount());
     }
 
     public function testStockNewFishWithExistingFishStocksPond()
@@ -44,29 +41,23 @@ class PondStockerTest extends \PHPUnit_Framework_TestCase
 
         $this->repoAllWillReturn($fixture);
 
-        $stocker = $this->getPondStocker();
+        $this->stocker->stock(3);
 
-        $stocker->stock(3);
-
-        $this->assertEquals(6,$stocker->getPond()->getFishCount());
+        $this->assertEquals(6,$this->stocker->getPond()->getFishCount());
     }
 
     public function testPondIsEmptyReturnsTrueWhenNone()
     {
-        $stocker = $this->getPondStocker();
-
-        $this->assertTrue($stocker->pondIsEmpty());
+        $this->assertTrue($this->stocker->pondIsEmpty());
     }
 
     public function testPondIsEmptyFalsWhenFishInPond()
     {
         $this->repoAllWillReturn(array());
 
-        $stocker = $this->getPondStocker();
+        $this->stocker->stock(3);
 
-        $stocker->stock(3);
-
-        $this->assertFalse($stocker->pondIsEmpty());
+        $this->assertFalse($this->stocker->pondIsEmpty());
     }
 
     private function repoAllWillReturn($returnValue)
@@ -74,11 +65,5 @@ class PondStockerTest extends \PHPUnit_Framework_TestCase
         $this->repoMock->expects($this->once())
             ->method('all')
             ->will($this->returnValue($returnValue));
-    }
-
-    private function getPondStocker()
-    {
-        $stocker = new PondStocker(new Pond($this->repoMock));
-        return $stocker;
     }
 }

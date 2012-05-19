@@ -8,65 +8,65 @@ use Domain\Entity\Fish;
 */
 class FishRepositoryTest extends PersistenceTestCase
 {
+    private $repo;
+
+    public function setUp()
+    {
+        parent::setUp();
+        $this->repo = new FishRepository();
+    }
+
     public function testFetchAll()
     {
-        $repo = new FishRepository();
-        $fish = $repo->all();
+        $fish = $this->repo->all();
         $this->assertEquals(3,count($fish));
     }
 
     public function testFetchAllWhenNoneIsEmptyArray()
     {
-        $repo = new FishRepository();
-        $repo->delete(1);
-        $repo->delete(2);
-        $repo->delete(3);
-        $all = $repo->all();
+        $this->repo->delete(1);
+        $this->repo->delete(2);
+        $this->repo->delete(3);
+        $all = $this->repo->all();
         $this->assertEquals(0,count($all));
     }
 
     public function testFetchSingle()
     {
-        $repo = new FishRepository();
-        $fish = $repo->fetch(1);
+        $fish = $this->repo->fetch(1);
         $this->assertEquals(1,$fish->getId());
     }
 
     public function testDeleteSingle()
     {
-        $repo = new FishRepository();
-        $repo->delete(1);
-        $this->assertEquals(2,count($repo->all()));
+        $this->repo->delete(1);
+        $this->assertEquals(2,count($this->repo->all()));
     }
 
     public function testDeleteReturnsEntity()
     {
-        $repo = new FishRepository();
-        $fish = $repo->delete(1);
-        $this->assertEquals(2,count($repo->all()));
+        $fish = $this->repo->delete(1);
+        $this->assertEquals(2,count($this->repo->all()));
         $this->assertInstanceOf('Domain\Entity\Fish',$fish);
     }
 
     public function testSaveNewFish()
     {
-        $repo = new FishRepository();
         $fish = new Fish();
-        $repo->store($fish);
-        $this->assertEquals(4,count($repo->all()));
+        $this->repo->store($fish);
+        $this->assertEquals(4,count($this->repo->all()));
     }
 
     public function testUpdateExistingFish()
     {
-        $repo = new FishRepository();
-        $fish = $repo->fetch(1);
-        $repo->store($fish);
-        $this->assertEquals(3,count($repo->all()));
+        $fish = $this->repo->fetch(1);
+        $this->repo->store($fish);
+        $this->assertEquals(3,count($this->repo->all()));
     }
 
     public function testDeleteUnknownReturnsNull()
     {
-        $repo = new FishRepository();
-        $this->assertNull($repo->delete(99));
+        $this->assertNull($this->repo->delete(99));
     }
 
     public function getTableDefinition()

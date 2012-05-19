@@ -8,12 +8,14 @@ use Domain\Value\Fisherman;
 class FishermanTest extends FishingTestCase
 {
     private $pond;
+    private $fisherman;
     private $fishFixture;
 
     public function setUp()
     {
         $this->repo = $this->getMock('Domain\Repository\IFishRepository');
         $this->pond = new Pond($this->repo);
+        $this->fisherman = new Fisherman($this->pond);
 
         $this->fishFixture = array(
             $this->getFishWithId(1),
@@ -28,43 +30,39 @@ class FishermanTest extends FishingTestCase
 
     public function testConstructWithPond()
     {
-        $fisherman = new Fisherman($this->pond);
-        $this->assertInstanceOf('Domain\Value\Pond',$fisherman->getPond());
+        $this->assertInstanceOf('Domain\Value\Pond',$this->fisherman->getPond());
     }
 
     public function testCastMethodIncrementsCastCount()
     {
-        $fisherman = new Fisherman($this->pond);
-        $fisherman->cast();
-        $this->assertEquals(1,$fisherman->getCastCount());
+        $this->fisherman->cast();
+        $this->assertEquals(1,$this->fisherman->getCastCount());
     }
 
     public function testThirdCastCallsRepoDeleteViaPondRemoveAndReturnsFish()
     {
         $this->setUpCatch(1);
-        $fisherman = new Fisherman($this->pond);
 
         $this->setUpRepoAll($this->once(),$this->fishFixture);
 
-        $one = $fisherman->cast();
+        $one = $this->fisherman->cast();
         $this->assertNull($one);
 
-        $two = $fisherman->cast();
+        $two = $this->fisherman->cast();
         $this->assertNull($two);
 
-        $three = $fisherman->cast();
+        $three = $this->fisherman->cast();
         $this->assertInstanceOf('Domain\Entity\Fish',$three);
     }
 
     public function testACatchDecrementsPondCount()
     {
         $this->setUpCatch(1);
-        $fisherman = new Fisherman($this->pond);
 
         $this->setUpRepoAll($this->any(),$this->fishFixture);
 
         $this->assertEquals(3,$this->pond->getFishCount());
-        $this->cast($fisherman,3);
+        $this->cast(3);
 
         $this->assertEquals(2,$this->pond->getFishCount());
     }
@@ -72,13 +70,12 @@ class FishermanTest extends FishingTestCase
     public function testEveryThirdCastCallsRepoDeleteViaPondRemoveAndReturnsFish()
     {
         $this->setUpCatch(1);
-        $fisherman = new Fisherman($this->pond);
 
         $this->setUpRepoAll($this->any(),$this->fishFixture);
 
         $i = 1;
         while($i < 7) {
-            $fish = $fisherman->cast();
+            $fish = $this->fisherman->cast();
             if($i % 3 == 0) {
                 $this->assertInstanceOf('Domain\Entity\Fish',$fish);
             }
@@ -91,22 +88,21 @@ class FishermanTest extends FishingTestCase
     public function testCatchAddsToFish()
     {
         $this->setUpCatch(1);
-        $fisherman = new Fisherman($this->pond);
 
         $this->setUpRepoAll($this->any(),$this->fishFixture);
 
-        $this->assertEquals(0,count($fisherman->getFish()));
+        $this->assertEquals(0,count($this->fisherman->getFish()));
 
-        $this->cast($fisherman,3);
+        $this->cast(3);
 
-        $this->assertEquals(1,count($fisherman->getFish()));
+        $this->assertEquals(1,count($this->fisherman->getFish()));
     }
 
-    protected function cast($fisherman,$numCasts)
+    protected function cast($numCasts)
     {
         $i = 0;
         while ($i < $numCasts) {
-            $fisherman->cast();
+            $this->fisherman->cast();
             $i++;
         }
     }

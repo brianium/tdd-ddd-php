@@ -1,18 +1,9 @@
 <?php
 define('DS',DIRECTORY_SEPARATOR);
-function load_classes($name)
-{
-    $root = dirname(dirname(__FILE__));
-    $vendorRoot = $root . DS . 'Infrastructure' . DS . 'Vendors';
-    $path = str_replace('\\', DS, $name);
-    $file = $root . DS . $path . '.php';
-    $vendorFile = $vendorRoot . DS . $path . '.php';
-    if(file_exists($file))
-        require_once $file;
-    elseif(file_exists($vendorFile))
-        require_once $vendorFile;
-}
-spl_autoload_register('load_classes');
+require_once dirname(dirname(__FILE__)) . DS . 'Infrastructure' . DS . 'Services' . DS . 'Autoloader.php';
+use Infrastructure\Services\Autoloader;
+
+Autoloader::register();
 
 define('DBAL_XML',dirname(dirname(__FILE__)) . DS . 'Infrastructure' . DS . 'Persistence' . DS . 'xml');
 

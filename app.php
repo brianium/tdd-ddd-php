@@ -1,10 +1,20 @@
 <?php
-//this might normally be an infrastructure service, but for ease we will reuse the test bootstrap
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Test' . DIRECTORY_SEPARATOR . 'bootstrap.php';
+define('DS',DIRECTORY_SEPARATOR);
+require_once dirname(__FILE__) . DS . 'Infrastructure' . DS . 'Services' . DS . 'Autoloader.php';
+use \Infrastructure\Services\Autoloader;
 use \Domain\Value\Pond;
 use \Infrastructure\Persistence\FishRepository;
 use \Domain\Service\PondStocker;
 use \Domain\Value\Fisherman;
+
+//enable lazy loading
+Autoloader::register();
+
+//config environment
+putenv("DB_DSN=mysql:dbname=letsgofishing;host=127.0.0.1");
+putenv("DB_USER=root");
+putenv("DB_PASSWD=root");
+putenv("DB_DBNAME=letsgofishing");
 
 //lets stock our pond
 $stocker = new PondStocker(new Pond(new FishRepository()));
