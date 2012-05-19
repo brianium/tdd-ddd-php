@@ -15,7 +15,7 @@ $fisherman = new Fisherman($stocker->getPond());
 
 //this is the main application loop
 fwrite(STDOUT,"It's time to go fishing! Pick from the options below:\n");
-while($stocker->getPond()->getFishCount() > 0)
+while(!$stocker->pondIsEmpty())
 {
     fwrite(STDOUT,"[1] Cast, [2] Quit\n");
     $selection = trim(fgets(STDIN));
@@ -23,7 +23,7 @@ while($stocker->getPond()->getFishCount() > 0)
         $fish = $fisherman->cast();
         if(!is_null($fish)) {
             fwrite(STDOUT,"You caught one!\n");
-            if($stocker->getPond()->getFishCount() == 0) {
+            if($stocker->pondIsEmpty()) {
                 fwrite(STDOUT,"Looks like this pond is out of fish.....\n");
                 exit;
             }
