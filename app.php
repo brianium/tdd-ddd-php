@@ -1,12 +1,13 @@
 <?php
-define('DS',DIRECTORY_SEPARATOR);
-require_once dirname(__FILE__) . DS . 'Infrastructure' . DS . 'Services' . DS . 'Autoloader.php';
-require_once 'environment.php';
 use \Infrastructure\Services\Autoloader;
 use \Domain\Value\Pond;
 use \Infrastructure\Persistence\FishRepository;
 use \Domain\Service\PondStocker;
 use \Domain\Value\Fisherman;
+
+define('DS',DIRECTORY_SEPARATOR);
+require_once dirname(__FILE__) . DS . 'Infrastructure' . DS . 'Services' . DS . 'Autoloader.php';
+require_once 'environment.php';
 
 //enable lazy loading
 Autoloader::register();
