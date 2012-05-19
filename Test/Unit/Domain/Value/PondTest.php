@@ -8,7 +8,7 @@ use Domain\Repository\FishRepository;
 */
 class PondTest extends FishingTestCase
 {
-	public function testConstructWithFishRepository()
+    public function testConstructWithFishRepository()
     {
         $repo = $this->getMock('Domain\Repository\IFishRepository');
         $pond = new Pond($repo);
