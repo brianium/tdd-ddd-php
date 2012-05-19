@@ -5,10 +5,10 @@ namespace Domain\Entity;
 */
 class Fish
 {
-	protected $id;
+    protected $id;
 
-	public function getId()
-	{
-		return $this->id;	
-	}
+    public function getId()
+    {
+        return $this->id;
+    }
 }
