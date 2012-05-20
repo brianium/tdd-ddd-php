@@ -1,9 +1,9 @@
 <?php
 use \Infrastructure\Services\Autoloader;
-use \Domain\Value\Pond;
+use \Domain\Values\Pond;
 use \Infrastructure\Persistence\FishRepository;
-use \Domain\Service\PondStocker;
-use \Domain\Value\Fisherman;
+use \Domain\Services\PondStocker;
+use \Domain\Values\Fisherman;
 
 define('DS',DIRECTORY_SEPARATOR);
 require_once dirname(__FILE__) . DS . 'Infrastructure' . DS . 'Services' . DS . 'Autoloader.php';
