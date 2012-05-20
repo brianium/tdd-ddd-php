@@ -1,8 +1,8 @@
 <?php
-namespace Test\Unit\Domain\Value;
-use Domain\Entity\Fish;
-use Domain\Value\Pond;
-use Domain\Repository\FishRepository;
+namespace Test\Unit\Domain\Values;
+use Domain\Entities\Fish;
+use Domain\Values\Pond;
+use Domain\Repositories\FishRepository;
 /**
 * @author Brian Scaturro
 */
@@ -12,13 +12,13 @@ class PondTest extends FishingTestCase
 
     public function setUp()
     {
-        $this->repo = $this->getMock('Domain\Repository\IFishRepository');
+        $this->repo = $this->getMock('Domain\Repositories\IFishRepository');
         $this->pond = new Pond($this->repo);
     }
 
     public function testConstructWithFishRepository()
     {
-        $this->assertInstanceOf('Domain\Repository\IFishRepository',$this->pond->getRepo());
+        $this->assertInstanceOf('Domain\Repositories\IFishRepository',$this->pond->getRepo());
     }
 
     public function testPondStockCallsFishRepoStoreWithNewFishEntity()
@@ -98,6 +98,6 @@ class PondTest extends FishingTestCase
              ->will($this->returnValue($fish[0]));
 
         $removed = $this->pond->deplete();
-        $this->assertInstanceOf('Domain\Entity\Fish',$removed);
+        $this->assertInstanceOf('Domain\Entities\Fish',$removed);
     }
 }

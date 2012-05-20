@@ -1,7 +1,7 @@
 <?php
-namespace Domain\Service;
-use Domain\Value\Pond;
-use Domain\Entity\Fish;
+namespace Domain\Services;
+use Domain\Values\Pond;
+use Domain\Entities\Fish;
 /**
  * @author Brian Scaturro
  */

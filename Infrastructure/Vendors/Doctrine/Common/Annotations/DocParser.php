@@ -699,7 +699,7 @@ final class DocParser
     }
 
     /**
-     * Values ::= Array | Value {"," Value}*
+     * Values ::= Array | Values {"," Values}*
      *
      * @return array
      */
@@ -721,7 +721,7 @@ final class DocParser
             $value = $this->Value();
 
             if ( ! is_object($value) && ! is_array($value)) {
-                $this->syntaxError('Value', $token);
+                $this->syntaxError('Values', $token);
             }
 
             $values[] = $value;
@@ -747,7 +747,7 @@ final class DocParser
     }
 
     /**
-     * Value ::= PlainValue | FieldAssignment
+     * Values ::= PlainValue | FieldAssignment
      *
      * @return mixed
      */
@@ -866,7 +866,7 @@ final class DocParser
     }
 
     /**
-     * ArrayEntry ::= Value | KeyValuePair
+     * ArrayEntry ::= Values | KeyValuePair
      * KeyValuePair ::= Key ("=" | ":") PlainValue
      * Key ::= string | integer
      *

@@ -73,7 +73,7 @@ class DebugUnitOfWorkListener
         foreach ($identityMap AS $className => $map) {
             fwrite($fh, "Class: ". $className . "\n");
             foreach ($map AS $idHash => $entity) {
-                fwrite($fh, " Entity: " . $this->getIdString($entity, $uow) . " " . spl_object_hash($entity)."\n");
+                fwrite($fh, " Entities: " . $this->getIdString($entity, $uow) . " " . spl_object_hash($entity)."\n");
                 fwrite($fh, "  Associations:\n");
 
                 $cm = $em->getClassMetadata($className);

@@ -1,6 +1,6 @@
 <?php
-namespace Test\Unit\Domain\Value;
-use Domain\Entity\Fish;
+namespace Test\Unit\Domain\Values;
+use Domain\Entities\Fish;
 /**
 * @author Brian Scaturro
 */

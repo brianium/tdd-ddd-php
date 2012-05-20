@@ -64,7 +64,7 @@ class RunDqlCommand extends Console\Command\Command
             ),
             new InputOption(
                 'depth', null, InputOption::VALUE_REQUIRED,
-                'Dumping depth of Entity graph.', 7
+                'Dumping depth of Entities graph.', 7
             )
         ))
         ->setHelp(<<<EOT

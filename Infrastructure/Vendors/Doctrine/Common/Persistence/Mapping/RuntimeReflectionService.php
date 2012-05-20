@@ -23,7 +23,7 @@ use ReflectionClass;
 use ReflectionProperty;
 
 /**
- * PHP Runtime Reflection Service
+ * PHP Runtime Reflection Services
  *
  * @author Benjamin Eberlei <kontakt@beberlei.de>
  */

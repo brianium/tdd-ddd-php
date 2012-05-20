@@ -1,7 +1,7 @@
 <?php
 namespace Infrastructure\Persistence;
-use Domain\Repository\IFishRepository;
-use Domain\Entity\Fish;
+use Domain\Repositories\IFishRepository;
+use Domain\Entities\Fish;
 use \Doctrine\DBAL\DriverManager;
 use \Doctrine\ORM\Tools\Setup;
 use \Doctrine\ORM\EntityManager;
@@ -46,7 +46,7 @@ class FishRepository implements IFishRepository
 
     protected function getRepository()
     {
-        return $this->getEntityManager()->getRepository('Domain\Entity\Fish');
+        return $this->getEntityManager()->getRepository('Domain\Entities\Fish');
     }
 
     protected function getEntityManager()

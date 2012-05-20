@@ -1,5 +1,5 @@
 <?php
-namespace Domain\Entity;
+namespace Domain\Entities;
 /**
 * @author Brian Scaturro
 */

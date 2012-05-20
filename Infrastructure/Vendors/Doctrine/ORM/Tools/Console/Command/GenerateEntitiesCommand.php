@@ -155,7 +155,7 @@ EOT
             $entityGenerator->generate($metadatas, $destPath);
 
             // Outputting information message
-            $output->write(PHP_EOL . sprintf('Entity classes generated to "<info>%s</INFO>"', $destPath) . PHP_EOL);
+            $output->write(PHP_EOL . sprintf('Entities classes generated to "<info>%s</INFO>"', $destPath) . PHP_EOL);
         } else {
             $output->write('No Metadata Classes to process.' . PHP_EOL);
         }

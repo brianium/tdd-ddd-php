@@ -225,7 +225,7 @@ class UnitOfWork implements PropertyChangedListener
     private $readOnlyObjects = array();
 
     /**
-     * Map of Entity Class-Names and corresponding IDs that should eager loaded when requested.
+     * Map of Entities Class-Names and corresponding IDs that should eager loaded when requested.
      *
      * @var array
      */
@@ -325,7 +325,7 @@ class UnitOfWork implements PropertyChangedListener
                 $this->getCollectionPersister($collectionToUpdate->getMapping())->update($collectionToUpdate);
             }
 
-            // Entity deletions come last and need to be in reverse commit order
+            // Entities deletions come last and need to be in reverse commit order
             if ($this->entityDeletions) {
                 for ($count = count($commitOrder), $i = $count - 1; $i >= 0; --$i) {
                     $this->executeDeletions($commitOrder[$i]);
@@ -391,7 +391,7 @@ class UnitOfWork implements PropertyChangedListener
     private function computeSingleEntityChangeSet($entity)
     {
         if ( $this->getEntityState($entity) !== self::STATE_MANAGED) {
-            throw new \InvalidArgumentException("Entity has to be managed for single computation " . self::objToStr($entity));
+            throw new \InvalidArgumentException("Entities has to be managed for single computation " . self::objToStr($entity));
         }
 
         $class = $this->em->getClassMetadata(get_class($entity));
@@ -529,7 +529,7 @@ class UnitOfWork implements PropertyChangedListener
         }
 
         if ( ! isset($this->originalEntityData[$oid])) {
-            // Entity is either NEW or MANAGED but not yet fully persisted (only has an id).
+            // Entities is either NEW or MANAGED but not yet fully persisted (only has an id).
             // These result in an INSERT.
             $this->originalEntityData[$oid] = $actualData;
             $changeSet = array();
@@ -550,7 +550,7 @@ class UnitOfWork implements PropertyChangedListener
 
             $this->entityChangeSets[$oid] = $changeSet;
         } else {
-            // Entity is "fully" MANAGED: it was already fully persisted before
+            // Entities is "fully" MANAGED: it was already fully persisted before
             // and we have a copy of the original data
             $originalData           = $this->originalEntityData[$oid];
             $isChangeTrackingNotify = $class->isChangeTrackingNotify();
@@ -999,7 +999,7 @@ class UnitOfWork implements PropertyChangedListener
                 $this->entityStates[$oid]
             );
 
-            // Entity with this $oid after deletion treated as NEW, even if the $oid
+            // Entities with this $oid after deletion treated as NEW, even if the $oid
             // is obtained by a new entity because the old one went out of scope.
             //$this->entityStates[$oid] = self::STATE_NEW;
             if ( ! $class->isIdentifierNatural()) {
@@ -1535,7 +1535,7 @@ class UnitOfWork implements PropertyChangedListener
                 break;
 
             case self::STATE_REMOVED:
-                // Entity becomes managed again
+                // Entities becomes managed again
                 unset($this->entityDeletions[$oid]);
 
                 $this->entityStates[$oid] = self::STATE_MANAGED;
@@ -2707,9 +2707,9 @@ class UnitOfWork implements PropertyChangedListener
     }
 
     /**
-     * Gets the EntityPersister for an Entity.
+     * Gets the EntityPersister for an Entities.
      *
-     * @param string $entityName  The name of the Entity.
+     * @param string $entityName  The name of the Entities.
      *
      * @return \Doctrine\ORM\Persisters\BasicEntityPersister
      */

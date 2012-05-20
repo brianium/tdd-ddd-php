@@ -38,7 +38,7 @@ class ORMInvalidArgumentException extends \InvalidArgumentException
 
     static public function scheduleInsertTwice($entity)
     {
-        return new self("Entity " . self::objToStr($entity) . " can not be scheduled for insertion twice.");
+        return new self("Entities " . self::objToStr($entity) . " can not be scheduled for insertion twice.");
     }
 
     static public function entityWithoutIdentity($className, $entity)
@@ -75,18 +75,18 @@ class ORMInvalidArgumentException extends \InvalidArgumentException
 
     static public function entityNotManaged($entity)
     {
-        throw new self("Entity " . self::objToStr($entity) . " is not managed. An entity is managed if its fetched " .
+        throw new self("Entities " . self::objToStr($entity) . " is not managed. An entity is managed if its fetched " .
                 "from the database or registered as new through EntityManager#persist");
     }
 
     static public function entityHasNoIdentity($entity, $operation)
     {
-        throw new self("Entity has no identity, therefore " . $operation ." cannot be performed. " . self::objToStr($entity));
+        throw new self("Entities has no identity, therefore " . $operation ." cannot be performed. " . self::objToStr($entity));
     }
 
     static public function entityIsRemoved($entity, $operation)
     {
-        throw new self("Entity is removed, therefore " . $operation ." cannot be performed. " . self::objToStr($entity));
+        throw new self("Entities is removed, therefore " . $operation ." cannot be performed. " . self::objToStr($entity));
     }
 
     static public function detachedEntityCannot($entity, $operation)

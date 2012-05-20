@@ -1,7 +1,7 @@
 <?php
-namespace Domain\Value;
-use Domain\Repository\IFishRepository;
-use Domain\Entity\Fish;
+namespace Domain\Values;
+use Domain\Repositories\IFishRepository;
+use Domain\Entities\Fish;
 /**
 * @author Brian Scaturro
 */

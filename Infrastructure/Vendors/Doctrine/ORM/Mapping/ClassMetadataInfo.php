@@ -206,7 +206,7 @@ class ClassMetadataInfo implements ClassMetadata
     public $subClasses = array();
 
     /**
-     * READ-ONLY: The named queries allowed to be called directly from Repository.
+     * READ-ONLY: The named queries allowed to be called directly from Repositories.
      *
      * @var array
      */
@@ -241,7 +241,7 @@ class ClassMetadataInfo implements ClassMetadata
      * The mapping definition array has the following values:
      *
      * - <b>fieldName</b> (string)
-     * The name of the field in the Entity.
+     * The name of the field in the Entities.
      *
      * - <b>type</b> (string)
      * The type name of the mapped field. Can be one of Doctrine's mapping types
@@ -1876,7 +1876,7 @@ class ClassMetadataInfo implements ClassMetadata
      * lifecycle callbacks and lifecycle listeners.
      *
      * @param string $event The lifecycle event.
-     * @param Entity $entity The Entity on which the event occured.
+     * @param Entities $entity The Entities on which the event occured.
      */
     public function invokeLifecycleCallbacks($lifecycleEvent, $entity)
     {

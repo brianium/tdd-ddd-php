@@ -148,9 +148,9 @@ class AnnotationDriver implements Driver
             }
         }
 
-        // Evaluate Entity annotation
-        if (isset($classAnnotations['Doctrine\ORM\Mapping\Entity'])) {
-            $entityAnnot = $classAnnotations['Doctrine\ORM\Mapping\Entity'];
+        // Evaluate Entities annotation
+        if (isset($classAnnotations['Doctrine\ORM\Mapping\Entities'])) {
+            $entityAnnot = $classAnnotations['Doctrine\ORM\Mapping\Entities'];
             if ($entityAnnot->repositoryClass !== null) {
                 $metadata->setCustomRepositoryClass($entityAnnot->repositoryClass);
             }
@@ -477,7 +477,7 @@ class AnnotationDriver implements Driver
     /**
      * Whether the class with the specified name is transient. Only non-transient
      * classes, that is entities and mapped superclasses, should have their metadata loaded.
-     * A class is non-transient if it is annotated with either @Entity or
+     * A class is non-transient if it is annotated with either @Entities or
      * @MappedSuperclass in the class doc block.
      *
      * @param string $className
@@ -500,7 +500,7 @@ class AnnotationDriver implements Driver
             return true;
         }
 
-        return ! isset($classAnnotations['Doctrine\ORM\Mapping\Entity']) &&
+        return ! isset($classAnnotations['Doctrine\ORM\Mapping\Entities']) &&
                ! isset($classAnnotations['Doctrine\ORM\Mapping\MappedSuperclass']);
     }
 

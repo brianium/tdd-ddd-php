@@ -165,7 +165,7 @@ class OneToManyPersister extends AbstractCollectionPersister
             return false;
         }
 
-        // Entity is scheduled for inclusion
+        // Entities is scheduled for inclusion
         if ($entityState === UnitOfWork::STATE_MANAGED && $uow->isScheduledForInsert($element)) {
             return false;
         }
@@ -173,7 +173,7 @@ class OneToManyPersister extends AbstractCollectionPersister
         $persister = $uow->getEntityPersister($mapping['targetEntity']);
 
         // only works with single id identifier entities. Will throw an
-        // exception in Entity Persisters if that is not the case for the
+        // exception in Entities Persisters if that is not the case for the
         // 'mappedBy' field.
         $id = current( $uow->getEntityIdentifier($coll->getOwner()));
 
@@ -196,7 +196,7 @@ class OneToManyPersister extends AbstractCollectionPersister
             return false;
         }
 
-        // If Entity is scheduled for inclusion, it is not in this collection.
+        // If Entities is scheduled for inclusion, it is not in this collection.
         // We can assure that because it would have return true before on array check
         if ($entityState === UnitOfWork::STATE_MANAGED && $uow->isScheduledForInsert($element)) {
             return false;

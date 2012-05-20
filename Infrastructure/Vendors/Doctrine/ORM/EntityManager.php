@@ -356,7 +356,7 @@ class EntityManager implements ObjectManager
     }
 
     /**
-     * Finds an Entity by its identifier.
+     * Finds an Entities by its identifier.
      *
      * This is just a convenient shortcut for getRepository($entityName)->find($id).
      *
@@ -670,7 +670,7 @@ class EntityManager implements ObjectManager
     }
 
     /**
-     * Check if the Entity manager is open or closed.
+     * Check if the Entities manager is open or closed.
      *
      * @return bool
      */
@@ -823,7 +823,7 @@ class EntityManager implements ObjectManager
     }
 
     /**
-     * Checks whether the Entity Manager has filters.
+     * Checks whether the Entities Manager has filters.
      *
      * @return True, if the EM has a filter collection.
      */

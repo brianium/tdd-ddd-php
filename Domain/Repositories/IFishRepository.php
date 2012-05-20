@@ -1,6 +1,6 @@
 <?php
-namespace Domain\Repository;
-use Domain\Entity\Fish;
+namespace Domain\Repositories;
+use Domain\Entities\Fish;
 interface IFishRepository {
     function all();
 

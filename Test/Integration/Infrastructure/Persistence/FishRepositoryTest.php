@@ -2,7 +2,7 @@
 namespace Test\Integration\Infrastructure\Persistence;
 use \Doctrine\DBAL\Schema\Table;
 use Infrastructure\Persistence\FishRepository;
-use Domain\Entity\Fish;
+use Domain\Entities\Fish;
 /**
 * @author Brian Scaturro
 */
@@ -47,7 +47,7 @@ class FishRepositoryTest extends PersistenceTestCase
     {
         $fish = $this->repo->delete(1);
         $this->assertEquals(2,count($this->repo->all()));
-        $this->assertInstanceOf('Domain\Entity\Fish',$fish);
+        $this->assertInstanceOf('Domain\Entities\Fish',$fish);
     }
 
     public function testSaveNewFish()

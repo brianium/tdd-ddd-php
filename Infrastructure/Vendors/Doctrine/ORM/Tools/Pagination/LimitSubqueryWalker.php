@@ -48,7 +48,7 @@ class LimitSubqueryWalker extends TreeWalkerAdapter
 
     /**
      * Walks down a SelectStatement AST node, modifying it to retrieve DISTINCT ids
-     * of the root Entity
+     * of the root Entities
      *
      * @param SelectStatement $AST
      * @return void

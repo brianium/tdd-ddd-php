@@ -103,7 +103,7 @@ abstract class FileDriver implements MappingDriver
 
     /**
      * Whether the class with the specified name should have its metadata loaded.
-     * This is only the case if it is either mapped as an Entity or a
+     * This is only the case if it is either mapped as an Entities or a
      * MappedSuperclass.
      *
      * @param string $className

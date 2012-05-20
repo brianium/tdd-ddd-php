@@ -556,7 +556,7 @@ public function <methodName>()
             if ($metadata->isMappedSuperclass) {
                 $lines[] = ' * @' . $this->_annotationsPrefix . 'MappedSuperClass';
             } else {
-                $lines[] = ' * @' . $this->_annotationsPrefix . 'Entity';
+                $lines[] = ' * @' . $this->_annotationsPrefix . 'Entities';
             }
 
             if ($metadata->customRepositoryClassName) {

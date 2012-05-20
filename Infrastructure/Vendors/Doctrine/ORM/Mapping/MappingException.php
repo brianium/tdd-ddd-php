@@ -34,8 +34,8 @@ class MappingException extends \Doctrine\ORM\ORMException
 
     public static function identifierRequired($entityName)
     {
-        return new self("No identifier/primary key specified for Entity '$entityName'."
-                . " Every Entity must have an identifier/primary key.");
+        return new self("No identifier/primary key specified for Entities '$entityName'."
+                . " Every Entities must have an identifier/primary key.");
     }
 
     public static function invalidInheritanceType($entityName, $type)
@@ -206,19 +206,19 @@ class MappingException extends \Doctrine\ORM\ORMException
      */
     public static function invalidClassInDiscriminatorMap($className, $owningClass) {
         return new self(
-            "Entity class '$className' used in the discriminator map of class '$owningClass' ".
+            "Entities class '$className' used in the discriminator map of class '$owningClass' ".
             "does not exist."
         );
     }
 
     public static function missingDiscriminatorMap($className)
     {
-        return new self("Entity class '$className' is using inheritance but no discriminator map was defined.");
+        return new self("Entities class '$className' is using inheritance but no discriminator map was defined.");
     }
 
     public static function missingDiscriminatorColumn($className)
     {
-        return new self("Entity class '$className' is using inheritance but no discriminator column was defined.");
+        return new self("Entities class '$className' is using inheritance but no discriminator column was defined.");
     }
 
     public static function invalidDiscriminatorColumnType($className, $type)
@@ -304,7 +304,7 @@ class MappingException extends \Doctrine\ORM\ORMException
     public static function mappedClassNotPartOfDiscriminatorMap($className, $rootClassName)
     {
         return new self(
-            "Entity '" . $className . "' has to be part of the discriminator map of '" . $rootClassName . "' " .
+            "Entities '" . $className . "' has to be part of the discriminator map of '" . $rootClassName . "' " .
             "to be properly mapped in the inheritance hierachy. Alternatively you can make '".$className."' an abstract class " .
             "to avoid this exception from occuring."
         );
@@ -312,17 +312,17 @@ class MappingException extends \Doctrine\ORM\ORMException
 
     public static function lifecycleCallbackMethodNotFound($className, $methodName)
     {
-        return new self("Entity '" . $className . "' has no method '" . $methodName . "' to be registered as lifecycle callback.");
+        return new self("Entities '" . $className . "' has no method '" . $methodName . "' to be registered as lifecycle callback.");
     }
 
     public static function invalidFetchMode($className, $annotation)
     {
-        return new self("Entity '" . $className . "' has a mapping with invalid fetch mode '" . $annotation . "'");
+        return new self("Entities '" . $className . "' has a mapping with invalid fetch mode '" . $annotation . "'");
     }
 
     public static function compositeKeyAssignedIdGeneratorRequired($className)
     {
-        return new self("Entity '". $className . "' has a composite identifier but uses an ID generator other than manually assigning (Identity, Sequence). This is not supported.");
+        return new self("Entities '". $className . "' has a composite identifier but uses an ID generator other than manually assigning (Identity, Sequence). This is not supported.");
     }
 
     public static function invalidTargetEntityClass($targetEntity, $sourceEntity, $associationName)

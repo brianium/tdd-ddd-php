@@ -1,7 +1,7 @@
 <?php
-namespace Test\Unit\Domain\Value;
-use Domain\Value\Pond;
-use Domain\Value\Fisherman;
+namespace Test\Unit\Domain\Values;
+use Domain\Values\Pond;
+use Domain\Values\Fisherman;
 /**
 * @author Brian Scaturro
 */
@@ -13,7 +13,7 @@ class FishermanTest extends FishingTestCase
 
     public function setUp()
     {
-        $this->repo = $this->getMock('Domain\Repository\IFishRepository');
+        $this->repo = $this->getMock('Domain\Repositories\IFishRepository');
         $this->pond = new Pond($this->repo);
         $this->fisherman = new Fisherman($this->pond);
 
@@ -30,7 +30,7 @@ class FishermanTest extends FishingTestCase
 
     public function testConstructWithPond()
     {
-        $this->assertInstanceOf('Domain\Value\Pond',$this->fisherman->getPond());
+        $this->assertInstanceOf('Domain\Values\Pond',$this->fisherman->getPond());
     }
 
     public function testCastMethodIncrementsCastCount()
@@ -52,7 +52,7 @@ class FishermanTest extends FishingTestCase
         $this->assertNull($two);
 
         $three = $this->fisherman->cast();
-        $this->assertInstanceOf('Domain\Entity\Fish',$three);
+        $this->assertInstanceOf('Domain\Entities\Fish',$three);
     }
 
     public function testACatchDecrementsPondCount()
@@ -77,7 +77,7 @@ class FishermanTest extends FishingTestCase
         while($i < 7) {
             $fish = $this->fisherman->cast();
             if($i % 3 == 0) {
-                $this->assertInstanceOf('Domain\Entity\Fish',$fish);
+                $this->assertInstanceOf('Domain\Entities\Fish',$fish);
             }
             $i++;
         }

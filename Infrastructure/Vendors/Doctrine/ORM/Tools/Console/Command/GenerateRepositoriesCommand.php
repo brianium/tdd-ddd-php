@@ -105,9 +105,9 @@ EOT
 
             if ($numRepositories) {
                 // Outputting information message
-                $output->write(PHP_EOL . sprintf('Repository classes generated to "<info>%s</INFO>"', $destPath) . PHP_EOL);
+                $output->write(PHP_EOL . sprintf('Repositories classes generated to "<info>%s</INFO>"', $destPath) . PHP_EOL);
             } else {
-                $output->write('No Repository classes were found to be processed.' . PHP_EOL);
+                $output->write('No Repositories classes were found to be processed.' . PHP_EOL);
             }
         } else {
             $output->write('No Metadata Classes to process.' . PHP_EOL);

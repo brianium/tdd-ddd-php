@@ -67,7 +67,7 @@ class ClassMetadataBuilder
     }
 
     /**
-     * Set custom Repository class name
+     * Set custom Repositories class name
      *
      * @param string $repositoryClassName
      * @return ClassMetadataBuilder

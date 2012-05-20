@@ -30,7 +30,7 @@ namespace Doctrine\Common\Annotations;
 class Annotation
 {
     /**
-     * Value property. Common among all derived classes.
+     * Values property. Common among all derived classes.
      *
      * @var string
      */

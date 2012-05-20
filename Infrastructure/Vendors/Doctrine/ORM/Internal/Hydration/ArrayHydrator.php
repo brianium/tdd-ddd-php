@@ -233,8 +233,8 @@ class ArrayHydrator extends AbstractHydrator
     }
 
     /**
-     * Updates the result pointer for an Entity. The result pointers point to the
-     * last seen instance of each Entity type. This is used for graph construction.
+     * Updates the result pointer for an Entities. The result pointers point to the
+     * last seen instance of each Entities type. This is used for graph construction.
      *
      * @param array $coll  The element.
      * @param boolean|integer $index  Index of the element in the collection.

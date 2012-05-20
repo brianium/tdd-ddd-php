@@ -260,7 +260,7 @@ class ManyToManyPersister extends AbstractCollectionPersister
             return false;
         }
 
-        // Entity is scheduled for inclusion
+        // Entities is scheduled for inclusion
         if ($entityState === UnitOfWork::STATE_MANAGED && $uow->isScheduledForInsert($element)) {
             return false;
         }
@@ -288,7 +288,7 @@ class ManyToManyPersister extends AbstractCollectionPersister
             return false;
         }
 
-        // If Entity is scheduled for inclusion, it is not in this collection.
+        // If Entities is scheduled for inclusion, it is not in this collection.
         // We can assure that because it would have return true before on array check
         if ($entityState === UnitOfWork::STATE_MANAGED && $uow->isScheduledForInsert($element)) {
             return false;
