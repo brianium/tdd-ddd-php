@@ -43,6 +43,7 @@ while(!$stocker->pondIsEmpty())
         },
         2 => function($c) {
             $c->writeLine("Good call... there will probably be more fish when you come back.");
+            exit;
         },
         'default' => function($c) {
             $c->writeLine("That option isn't recognized. Try again.");
