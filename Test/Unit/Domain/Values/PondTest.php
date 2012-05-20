@@ -29,7 +29,6 @@ class PondTest extends FishingTestCase
              ->method('store')
              ->with($this->equalTo($fish));
 
-
         $this->pond->stock($fish);
     }
 

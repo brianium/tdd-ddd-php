@@ -1,5 +1,6 @@
 <?php
 use \Infrastructure\Services\Autoloader;
+use \Infrastructure\Services\Console;
 use \Domain\Values\Pond;
 use \Infrastructure\Persistence\FishRepository;
 use \Domain\Services\PondStocker;
@@ -12,6 +13,9 @@ require_once 'environment.php';
 //enable lazy loading
 Autoloader::register();
 
+//console
+$console = new Console();
+
 //lets stock our pond
 $stocker = new PondStocker(new Pond(new FishRepository()));
 $stocker->stock(3);
@@ -20,26 +24,28 @@ $stocker->stock(3);
 $fisherman = new Fisherman($stocker->getPond());
 
 //this is the main application loop
-fwrite(STDOUT,"It's time to go fishing! Pick from the options below:\n");
+$console->writeLine("It's time to go fishing! Pick from the options below:");
 while(!$stocker->pondIsEmpty())
 {
-    fwrite(STDOUT,"[1] Cast, [2] Quit\n");
-    $selection = trim(fgets(STDIN));
-    if($selection == 1) {
-        $fish = $fisherman->cast();
-        if(!is_null($fish)) {
-            fwrite(STDOUT,"You caught one!\n");
-            if($stocker->pondIsEmpty()) {
-                fwrite(STDOUT,"Looks like this pond is out of fish.....\n");
-                exit;
+    $console->writeLine("[1] Cast, [2] Quit");
+    $console->input(trim(fgets(STDIN)),array(
+        1 => function($c) use($fisherman,$stocker) {
+            $fish = $fisherman->cast();
+            if(!is_null($fish)) {
+                $c->writeLine("You caught one!");
+                if($stocker->pondIsEmpty()) {
+                    $c->writeLine("Looks like this pond is out of fish.....");
+                    exit;
+                }
+            } else {
+                $c->writeLine("Oh darn! Try casting one or two more times.");
             }
-        } else {
-            fwrite(STDOUT,"Oh darn! Try casting one or two more times.\n");
+        },
+        2 => function($c) {
+            $c->writeLine("Good call... there will probably be more fish when you come back.");
+        },
+        'default' => function($c) {
+            $c->writeLine("That option isn't recognized. Try again.");
         }
-    } else if ($selection == 2) {
-        fwrite(STDOUT,"Good call... there will probably be more fish when you come back.\n");
-        exit;
-    } else {
-        fwrite(STDOUT,"That option isn't recognized. Try again.\n");
-    }
+    ));
 }
