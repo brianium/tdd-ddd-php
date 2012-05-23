@@ -18,7 +18,7 @@ class PondStockerTest extends \PHPUnit_Framework_TestCase
         $this->stocker = new PondStocker(new Pond($this->repoMock));
     }
 
-    public function testConstructorTakesPond()
+    public function testGetPondReturnsPondInstance()
     {
         $this->assertInstanceOf('Domain\Values\Pond',$this->stocker->getPond());
     }

@@ -28,7 +28,7 @@ class FishermanTest extends FishingTestCase
         }
     }
 
-    public function testConstructWithPond()
+    public function testGetPondReturnsInstanceOfPond()
     {
         $this->assertInstanceOf('Domain\Values\Pond',$this->fisherman->getPond());
     }

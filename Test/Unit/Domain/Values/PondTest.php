@@ -16,7 +16,7 @@ class PondTest extends FishingTestCase
         $this->pond = new Pond($this->repo);
     }
 
-    public function testConstructWithFishRepository()
+    public function testGetRepositoryReturnsIFishRepository()
     {
         $this->assertInstanceOf('Domain\Repositories\IFishRepository',$this->pond->getRepo());
     }
