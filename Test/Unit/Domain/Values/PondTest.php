@@ -2,7 +2,7 @@
 namespace Test\Unit\Domain\Values;
 use Domain\Entities\Fish;
 use Domain\Values\Pond;
-use Domain\Repositories\FishRepository;
+use Domain\Repositories\IFishRepository;
 /**
 * @author Brian Scaturro
 */
