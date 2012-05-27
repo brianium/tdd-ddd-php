@@ -1,6 +1,6 @@
 <?php
 namespace Domain\Services;
-use Domain\Values\Pond;
+use Domain\Services\Pond;
 use Domain\Entities\Fish;
 /**
  * @author Brian Scaturro

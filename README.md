@@ -12,7 +12,7 @@ deleted from the database. A domain service is in charge of stocking the pond wi
 
 Domain
 ------
-The domain holds the fish entity, the fish repository interface, the service responsible for stocking the pond, and the value objects - that is our lone fisherman and pond.
+The domain holds the fish entity, the fish repository interface, the service responsible for stocking the pond, and our lone fisherman and pond services.
 
 Infrastructure
 --------------

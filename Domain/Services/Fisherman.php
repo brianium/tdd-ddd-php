@@ -1,5 +1,5 @@
 <?php
-namespace Domain\Values;
+namespace Domain\Services;
 /**
 * @author Brian Scaturro
 */

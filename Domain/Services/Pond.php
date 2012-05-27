@@ -1,5 +1,5 @@
 <?php
-namespace Domain\Values;
+namespace Domain\Services;
 use Domain\Repositories\IFishRepository;
 use Domain\Entities\Fish;
 /**

@@ -1,5 +1,5 @@
 <?php
-namespace Test\Unit\Domain\Values;
+namespace Test\Unit\Domain\Services;
 use Domain\Entities\Fish;
 /**
 * @author Brian Scaturro

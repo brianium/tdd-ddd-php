@@ -1,7 +1,7 @@
 <?php
-namespace Test\Unit\Domain\Values;
-use Domain\Values\Pond;
-use Domain\Values\Fisherman;
+namespace Test\Unit\Domain\Services;
+use Domain\Services\Pond;
+use Domain\Services\Fisherman;
 /**
 * @author Brian Scaturro
 */
@@ -30,7 +30,7 @@ class FishermanTest extends FishingTestCase
 
     public function testGetPondReturnsInstanceOfPond()
     {
-        $this->assertInstanceOf('Domain\Values\Pond',$this->fisherman->getPond());
+        $this->assertInstanceOf('Domain\Services\Pond',$this->fisherman->getPond());
     }
 
     public function testCastMethodIncrementsCastCount()

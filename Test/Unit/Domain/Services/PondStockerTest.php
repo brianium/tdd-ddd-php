@@ -1,6 +1,6 @@
 <?php
 namespace Test\Unit\Domain\Services;
-use Domain\Values\Pond;
+use Domain\Services\Pond;
 use Domain\Repositories\IFishRepository;
 use Domain\Services\PondStocker;
 use Domain\Entities\Fish;
@@ -20,7 +20,7 @@ class PondStockerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetPondReturnsPondInstance()
     {
-        $this->assertInstanceOf('Domain\Values\Pond',$this->stocker->getPond());
+        $this->assertInstanceOf('Domain\Services\Pond',$this->stocker->getPond());
     }
 
     public function testStockNewFishWithEmptyRepoStocksPond()
